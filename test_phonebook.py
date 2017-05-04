@@ -17,6 +17,7 @@ class PhonebookTest(unittest.TestCase):
     def test_empty_phonebook_is_consistent(self):
         self.assertTrue(self.phonebook.is_consistent())
 
+    @unittest.skip("poor example")
     def test_is_consistent(self):
         self.assertTrue(self.phonebook.is_consistent())
         self.phonebook.add("Bob", "12345")
@@ -27,3 +28,23 @@ class PhonebookTest(unittest.TestCase):
         self.assertFalse(self.phonebook.is_consistent())
         self.phonebook.add("Sue", "123")  # prefix of Bob
         self.assertFalse(self.phonebook.is_consistent())
+
+    def test_phonebook_with_normal_entries_is_consistent(self):
+        self.phonebook.add("Bob", "12345")
+        self.phonebook.add("Mary", "012345")
+        self.assertTrue(self.phonebook.is_consistent())
+
+    def test_phonebook_with_duplicate_entries_is_inconsistent(self):
+        self.phonebook.add("Bob", "12345")
+        self.phonebook.add("Mary", "12345")
+        self.assertFalse(self.phonebook.is_consistent())
+
+    def test_phonebook_with_numbers_that_prefix_one_another_is_inconsistent(self):
+        self.phonebook.add("Bob", "12345")
+        self.phonebook.add("Mary", "123")
+        self.assertFalse(self.phonebook.is_consistent())
+
+    def test_phonebook_adds_names_and_numbers(self):
+        self.phonebook.add("Sue", "12345")
+        self.assertIn("Sue", self.phonebook.get_names())
+        self.assertIn("12345", self.phonebook.get_numbers())
