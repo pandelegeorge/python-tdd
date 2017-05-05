@@ -1,10 +1,10 @@
-def fizzbuzz(n, additional_rules):
+def fizzbuzz(n, additional_rules=None):
     """
-    >>> fizzbuzz(2, None)
+    >>> fizzbuzz(2)
     '2'
-    >>> fizzbuzz(3, None)
+    >>> fizzbuzz(3)
     'Fizz'
-    >>> fizzbuzz(15, None)
+    >>> fizzbuzz(15)
     'FizzBuzz'
     >>> fizzbuzz(35, {7: "Whizz"})
     'BuzzWhizz'
